@@ -1,0 +1,352 @@
+-- VŨ BẢO AN HUB - PASSWORD PROTECTED
+local key = "VuBaoAnDepTrai"
+
+-- Tạo màn hình nhập key
+local keyGui = Instance.new("ScreenGui")
+keyGui.Parent = game:GetService("CoreGui")
+keyGui.Name = "KeyGUI"
+
+local keyFrame = Instance.new("Frame")
+keyFrame.Parent = keyGui
+keyFrame.Size = UDim2.new(0, 300, 0, 150)
+keyFrame.Position = UDim2.new(0.5, -150, 0.5, -75)
+keyFrame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.2)
+keyFrame.Active = true
+keyFrame.Draggable = true
+
+local keyTitle = Instance.new("TextLabel")
+keyTitle.Parent = keyFrame
+keyTitle.Size = UDim2.new(1, 0, 0, 40)
+keyTitle.Text = "VŨ BẢO AN HUB - NHẬP KEY"
+keyTitle.BackgroundColor3 = Color3.new(0, 0.4, 1)
+keyTitle.TextColor3 = Color3.new(1, 1, 1)
+keyTitle.TextSize = 16
+
+local keyInput = Instance.new("TextBox")
+keyInput.Parent = keyFrame
+keyInput.Size = UDim2.new(0.8, 0, 0, 30)
+keyInput.Position = UDim2.new(0.1, 0, 0.3, 0)
+keyInput.PlaceholderText = "Nhập key tại đây..."
+keyInput.BackgroundColor3 = Color3.new(1, 1, 1)
+keyInput.TextColor3 = Color3.new(0, 0, 0)
+keyInput.TextSize = 14
+
+local keyBtn = Instance.new("TextButton")
+keyBtn.Parent = keyFrame
+keyBtn.Size = UDim2.new(0.8, 0, 0, 30)
+keyBtn.Position = UDim2.new(0.1, 0, 0.6, 0)
+keyBtn.Text = "XÁC NHẬN"
+keyBtn.BackgroundColor3 = Color3.new(0, 0.6, 0)
+keyBtn.TextColor3 = Color3.new(1, 1, 1)
+keyBtn.TextSize = 14
+
+local keyMessage = Instance.new("TextLabel")
+keyMessage.Parent = keyFrame
+keyMessage.Size = UDim2.new(0.8, 0, 0, 20)
+keyMessage.Position = UDim2.new(0.1, 0, 0.8, 0)
+keyMessage.Text = ""
+keyMessage.TextColor3 = Color3.new(1, 0, 0)
+keyMessage.TextSize = 12
+keyMessage.BackgroundTransparency = 1
+
+-- Biến toàn cục
+getgenv().VBA_SlideEnabled = false
+getgenv().VBA_SpeedValue = 16
+getgenv().VBA_JumpEnabled = false
+getgenv().VBA_BodyVelocity = nil
+getgenv().VBA_SlideConnection = nil
+getgenv().VBA_JumpConnection = nil
+
+local p = game.Players.LocalPlayer
+local mainGui = nil
+
+-- Xử lý nhập key
+keyBtn.MouseButton1Click:Connect(function()
+    if keyInput.Text == key then
+        keyGui:Destroy()
+        CreateMainGUI()
+    else
+        keyMessage.Text = "Key sai! Vui lòng thử lại."
+    end
+end)
+
+keyInput.FocusLost:Connect(function(enterPressed)
+    if enterPressed then
+        if keyInput.Text == key then
+            keyGui:Destroy()
+            CreateMainGUI()
+        else
+            keyMessage.Text = "Key sai! Vui lòng thử lại."
+        end
+    end
+end)
+
+function CreateMainGUI()
+    -- Tạo GUI chính
+    mainGui = Instance.new("ScreenGui")
+    mainGui.Parent = game:GetService("CoreGui")
+    mainGui.Name = "VBAHubGUI"
+    mainGui.ResetOnSpawn = false
+
+    local mainFrame = Instance.new("Frame")
+    mainFrame.Parent = mainGui
+    mainFrame.Size = UDim2.new(0, 250, 0, 200)
+    mainFrame.Position = UDim2.new(0, 10, 0, 10)
+    mainFrame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.2)
+    mainFrame.Active = true
+    mainFrame.Draggable = true
+
+    local title = Instance.new("TextLabel")
+    title.Parent = mainFrame
+    title.Size = UDim2.new(1, 0, 0, 25)
+    title.Text = "VŨ BẢO AN HUB"
+    title.BackgroundColor3 = Color3.new(0, 0.4, 1)
+    title.TextColor3 = Color3.new(1, 1, 1)
+    title.TextSize = 14
+
+    -- Nút Infinite Slide
+    local slideBtn = Instance.new("TextButton")
+    slideBtn.Parent = mainFrame
+    slideBtn.Size = UDim2.new(0.9, 0, 0, 30)
+    slideBtn.Position = UDim2.new(0.05, 0, 0.15, 0)
+    slideBtn.Text = "INFINITE SLIDE: OFF"
+    slideBtn.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+    slideBtn.TextColor3 = Color3.new(1, 1, 1)
+    slideBtn.TextSize = 12
+
+    -- Speed Input (giống GPhuc)
+    local speedLabel = Instance.new("TextLabel")
+    speedLabel.Parent = mainFrame
+    speedLabel.Size = UDim2.new(0.4, 0, 0, 20)
+    speedLabel.Position = UDim2.new(0.05, 0, 0.35, 0)
+    speedLabel.Text = "SPEED:"
+    speedLabel.TextColor3 = Color3.new(1, 1, 1)
+    speedLabel.TextSize = 12
+    speedLabel.BackgroundTransparency = 1
+    speedLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    local speedInput = Instance.new("TextBox")
+    speedInput.Parent = mainFrame
+    speedInput.Size = UDim2.new(0.3, 0, 0, 25)
+    speedInput.Position = UDim2.new(0.45, 0, 0.35, 0)
+    speedInput.Text = "16"
+    speedInput.BackgroundColor3 = Color3.new(1, 1, 1)
+    speedInput.TextColor3 = Color3.new(0, 0, 0)
+    speedInput.TextSize = 12
+    speedInput.PlaceholderText = "16"
+
+    local speedBtn = Instance.new("TextButton")
+    speedBtn.Parent = mainFrame
+    speedBtn.Size = UDim2.new(0.15, 0, 0, 25)
+    speedBtn.Position = UDim2.new(0.8, 0, 0.35, 0)
+    speedBtn.Text = "ÁP DỤNG"
+    speedBtn.BackgroundColor3 = Color3.new(0, 0.6, 0)
+    speedBtn.TextColor3 = Color3.new(1, 1, 1)
+    speedBtn.TextSize = 10
+
+    -- Hiển thị tốc độ hiện tại
+    local currentSpeedLabel = Instance.new("TextLabel")
+    currentSpeedLabel.Parent = mainFrame
+    currentSpeedLabel.Size = UDim2.new(0.9, 0, 0, 15)
+    currentSpeedLabel.Position = UDim2.new(0.05, 0, 0.5, 0)
+    currentSpeedLabel.Text = "Tốc độ hiện tại: 16"
+    currentSpeedLabel.TextColor3 = Color3.new(1, 1, 0)
+    currentSpeedLabel.TextSize = 11
+    currentSpeedLabel.BackgroundTransparency = 1
+
+    -- Nút Auto Jump
+    local jumpBtn = Instance.new("TextButton")
+    jumpBtn.Parent = mainFrame
+    jumpBtn.Size = UDim2.new(0.9, 0, 0, 30)
+    jumpBtn.Position = UDim2.new(0.05, 0, 0.65, 0)
+    jumpBtn.Text = "AUTO JUMP: OFF"
+    jumpBtn.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+    jumpBtn.TextColor3 = Color3.new(1, 1, 1)
+    jumpBtn.TextSize = 12
+
+    -- Nút đóng GUI
+    local closeBtn = Instance.new("TextButton")
+    closeBtn.Parent = mainFrame
+    closeBtn.Size = UDim2.new(0.9, 0, 0, 25)
+    closeBtn.Position = UDim2.new(0.05, 0, 0.85, 0)
+    closeBtn.Text = "ĐÓNG MENU"
+    closeBtn.BackgroundColor3 = Color3.new(0.8, 0.2, 0.2)
+    closeBtn.TextColor3 = Color3.new(1, 1, 1)
+    closeBtn.TextSize = 12
+
+    -- INFINITE SLIDE ĐÃ SỬA - TỐC ĐỘ 55 CỐ ĐỊNH
+    slideBtn.MouseButton1Click:Connect(function()
+        getgenv().VBA_SlideEnabled = not getgenv().VBA_SlideEnabled
+        
+        if getgenv().VBA_SlideEnabled then
+            local c = p.Character or p.CharacterAdded:Wait()
+            local r = c:WaitForChild("HumanoidRootPart")
+            
+            if getgenv().VBA_BodyVelocity then 
+                getgenv().VBA_BodyVelocity:Destroy() 
+            end
+            
+            getgenv().VBA_BodyVelocity = Instance.new("BodyVelocity")
+            getgenv().VBA_BodyVelocity.MaxForce = Vector3.new(10000, 0, 10000)
+            getgenv().VBA_BodyVelocity.Parent = r
+            
+            if getgenv().VBA_SlideConnection then 
+                getgenv().VBA_SlideConnection:Disconnect() 
+            end
+            
+            getgenv().VBA_SlideConnection = game:GetService("RunService").Heartbeat:Connect(function()
+                if getgenv().VBA_SlideEnabled and getgenv().VBA_BodyVelocity and getgenv().VBA_BodyVelocity.Parent then
+                    local currentCharacter = p.Character
+                    if currentCharacter and currentCharacter:FindFirstChild("HumanoidRootPart") then
+                        local rootPart = currentCharacter.HumanoidRootPart
+                        -- TỐC ĐỘ CỐ ĐỊNH 55 (KHÔNG TĂNG DẦN)
+                        getgenv().VBA_BodyVelocity.Velocity = rootPart.CFrame.LookVector * 55
+                        
+                        -- VẪN CHO PHÉP NHẢY VÀ EMOTE KHI ĐANG TRƯỢT
+                        local humanoid = currentCharacter:FindFirstChild("Humanoid")
+                        if humanoid then
+                            humanoid.PlatformStand = false -- Đảm bảo có thể nhảy
+                        end
+                    end
+                end
+            end)
+            
+            slideBtn.Text = "INFINITE SLIDE: ON"
+            slideBtn.BackgroundColor3 = Color3.new(0, 0.6, 0)
+        else
+            if getgenv().VBA_SlideConnection then 
+                getgenv().VBA_SlideConnection:Disconnect()
+                getgenv().VBA_SlideConnection = nil
+            end
+            if getgenv().VBA_BodyVelocity then 
+                getgenv().VBA_BodyVelocity:Destroy()
+                getgenv().VBA_BodyVelocity = nil
+            end
+            slideBtn.Text = "INFINITE SLIDE: OFF"
+            slideBtn.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+        end
+    end)
+
+    -- SPEED INPUT (giống GPhuc)
+    speedBtn.MouseButton1Click:Connect(function()
+        local speed = tonumber(speedInput.Text)
+        if speed and speed >= 16 and speed <= 100 then
+            getgenv().VBA_SpeedValue = speed
+            local c = p.Character or p.CharacterAdded:Wait()
+            local h = c:WaitForChild("Humanoid")
+            h.WalkSpeed = speed
+            currentSpeedLabel.Text = "Tốc độ hiện tại: " .. speed
+            speedInput.BackgroundColor3 = Color3.new(0, 1, 0)
+        else
+            speedInput.BackgroundColor3 = Color3.new(1, 0, 0)
+            currentSpeedLabel.Text = "Lỗi: Nhập số từ 16-100"
+        end
+    end)
+
+    speedInput.FocusLost:Connect(function(enterPressed)
+        if enterPressed then
+            local speed = tonumber(speedInput.Text)
+            if speed and speed >= 16 and speed <= 100 then
+                getgenv().VBA_SpeedValue = speed
+                local c = p.Character or p.CharacterAdded:Wait()
+                local h = c:WaitForChild("Humanoid")
+                h.WalkSpeed = speed
+                currentSpeedLabel.Text = "Tốc độ hiện tại: " .. speed
+                speedInput.BackgroundColor3 = Color3.new(0, 1, 0)
+            else
+                speedInput.BackgroundColor3 = Color3.new(1, 0, 0)
+                currentSpeedLabel.Text = "Lỗi: Nhập số từ 16-100"
+            end
+        end
+    end)
+
+    -- AUTO JUMP
+    jumpBtn.MouseButton1Click:Connect(function()
+        getgenv().VBA_JumpEnabled = not getgenv().VBA_JumpEnabled
+        
+        if getgenv().VBA_JumpEnabled then
+            if getgenv().VBA_JumpConnection then 
+                getgenv().VBA_JumpConnection:Disconnect() 
+            end
+            
+            getgenv().VBA_JumpConnection = game:GetService("RunService").Heartbeat:Connect(function()
+                if getgenv().VBA_JumpEnabled then
+                    local currentCharacter = p.Character
+                    if currentCharacter and currentCharacter:FindFirstChild("Humanoid") then
+                        local h = currentCharacter.Humanoid
+                        if h.FloorMaterial ~= Enum.Material.Air then
+                            h:ChangeState(Enum.HumanoidStateType.Jumping)
+                            wait(0.1)
+                        end
+                    end
+                end
+            end)
+            
+            jumpBtn.Text = "AUTO JUMP: ON"
+            jumpBtn.BackgroundColor3 = Color3.new(0, 0.6, 0)
+        else
+            if getgenv().VBA_JumpConnection then 
+                getgenv().VBA_JumpConnection:Disconnect()
+                getgenv().VBA_JumpConnection = nil
+            end
+            jumpBtn.Text = "AUTO JUMP: OFF"
+            jumpBtn.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+        end
+    end)
+
+    -- ĐÓNG GUI
+    closeBtn.MouseButton1Click:Connect(function()
+        mainGui:Destroy()
+    end)
+
+    -- AUTO RESPAWN
+    p.CharacterAdded:Connect(function(newCharacter)
+        local r = newCharacter:WaitForChild("HumanoidRootPart")
+        local h = newCharacter:WaitForChild("Humanoid")
+        wait(1)
+        
+        -- Áp dụng lại slide với tốc độ 55 cố định
+        if getgenv().VBA_SlideEnabled then
+            if getgenv().VBA_BodyVelocity then 
+                getgenv().VBA_BodyVelocity:Destroy() 
+            end
+            
+            getgenv().VBA_BodyVelocity = Instance.new("BodyVelocity")
+            getgenv().VBA_BodyVelocity.MaxForce = Vector3.new(10000, 0, 10000)
+            getgenv().VBA_BodyVelocity.Parent = r
+            
+            if getgenv().VBA_SlideConnection then 
+                getgenv().VBA_SlideConnection:Disconnect() 
+            end
+            
+            getgenv().VBA_SlideConnection = game:GetService("RunService").Heartbeat:Connect(function()
+                if getgenv().VBA_SlideEnabled and getgenv().VBA_BodyVelocity and getgenv().VBA_BodyVelocity.Parent then
+                    -- TỐC ĐỘ CỐ ĐỊNH 55 KHI RESPAWN
+                    getgenv().VBA_BodyVelocity.Velocity = r.CFrame.LookVector * 55
+                end
+            end)
+        end
+        
+        -- Áp dụng lại speed
+        h.WalkSpeed = getgenv().VBA_SpeedValue
+        currentSpeedLabel.Text = "Tốc độ hiện tại: " .. getgenv().VBA_SpeedValue
+        
+        -- Áp dụng lại auto jump
+        if getgenv().VBA_JumpEnabled then
+            if getgenv().VBA_JumpConnection then 
+                getgenv().VBA_JumpConnection:Disconnect() 
+            end
+            
+            getgenv().VBA_JumpConnection = game:GetService("RunService").Heartbeat:Connect(function()
+                if getgenv().VBA_JumpEnabled and h.FloorMaterial ~= Enum.Material.Air then
+                    h:ChangeState(Enum.HumanoidStateType.Jumping)
+                    wait(0.1)
+                end
+            end)
+        end
+    end)
+
+    print("🎉 VŨ BẢO AN HUB ĐÃ KÍCH HOẠT THÀNH CÔNG!")
+end
+
+print("🔐 VUI LÒNG NHẬP KEY ĐỂ SỬ DỤNG VŨ BẢO AN HUB")
