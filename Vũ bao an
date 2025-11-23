@@ -301,7 +301,7 @@ local UserInputService = game:GetService("UserInputService")
 local CoreGui = game:GetService("CoreGui")
 local TweenService = game:GetService("TweenService")
 
-local ExistingUI = CoreGui:FindFirstChild("SpawnHubMinimizeUI")
+local ExistingUI = CoreGui:FindFirstChild("VuBaoAnMinimizeUI")
 if ExistingUI then
     ExistingUI:Destroy()
 end
@@ -418,7 +418,7 @@ local Options = Fluent.Options
 
     Tabs.Dev:AddParagraph({
         Title = "Note",
-        Content = "Thank you for using the script!"
+        Content = "Cảm ơn mày vì đã sài script!"
     })
 
     Tabs.Dev:AddSection("↳ Links")
@@ -427,7 +427,7 @@ local Options = Fluent.Options
         Title = "Discord",
         Description = "Copy the link to join the discord!",
         Callback = function()
-            setclipboard("https://discord.gg/WEGT92yv")
+            setclipboard("https://discord.gg/xEzvT6HEzf")
             Fluent:Notify({
                 Title = "Notification",
                 Content = "Successfully copied to the clipboard",
@@ -443,7 +443,7 @@ local Options = Fluent.Options
         Title = "Youtube",
         Description = "Copy link to Subscribe to Youtube channel!",
         Callback = function()
-            setclipboard("https://www.youtube.com/@SLKgamingSSR")
+            setclipboard("Tạm Thời chưa có")
             Fluent:Notify({
                 Title = "Notification",
                 Content = "Successfully copied to the clipboard!",
@@ -458,7 +458,7 @@ local Options = Fluent.Options
         Title = "Facebook",
         Description = "Copy link to join facebook group!",
         Callback = function()
-            setclipboard("https://www.facebook.com/groups/1180845463307087/?ref=share&mibextid=NSMWBT")
+            setclipboard("tạm thời chưa có")
             Fluent:Notify({
                 Title = "Notification",
                 Content = "Successfully copied to the clipboard!",
@@ -5171,7 +5171,7 @@ do
     local Workspace = game:GetService("Workspace")
 
     Tabs.Misc:AddToggle("AutoClosePopupV2", {
-        Title = "Detele 1x Popups",
+        Title = "xóa màn lỗi của 1x1x1",
         Default = true
     }):OnChanged(function(Value)
         DoLoop = Value
@@ -5232,7 +5232,7 @@ local function ServerHop()
         if Fluent and Fluent.Notify then
             Fluent:Notify({
                 Title = "Rejoin Starting",
-                Content = "Bắt Đầu Vào Máy Chủ Đã Fix Lag",
+                Content = "Bố mày tìm được rồi từ từ t chuyển vào cho",
                 Duration = 3
             })
         else
@@ -5242,7 +5242,7 @@ local function ServerHop()
         warn("[ServerHop] Lỗi khi Teleport:", err)
         if Fluent and Fluent.Notify then
             Fluent:Notify({
-                Title = "Lỗi Teleport",
+                Title = "đéo tìm được",
                 Content = tostring(err),
                 Duration = 4
             })
@@ -5256,7 +5256,7 @@ Tabs.Misc:AddButton({
         if Fluent and Fluent.Notify then
             Fluent:Notify({
                 Title = "Rejoin Settings",
-                Content = "Đang Giảm Lag Cho Các Máy Chủ...",
+                Content = "Từ Từ rồi bố mày tìm...",
                 Duration = 2
             })
         end
@@ -5376,7 +5376,7 @@ local AutoReduceToggle = Tabs.Misc:AddToggle("AutoReduce", {
 
             restoreLighting()
             restoreParts()
-            print("✅ Đã khôi phục đồ họa gốc")
+            print("tôi xài code chat gpt tôi còn già mồm")
         end
     end
 })
@@ -5565,9 +5565,9 @@ AexecToggle:OnChanged(function(Value)
         task.spawn(function()
             pcall(function()
                 if queue_on_teleport then
-                    local SpawnHubScript1 = [[
+                    local vubaoan1 = [[
 task.wait(3)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/hdksakst-ship-it/Hutao-Hub-Omega-X/refs/heads/main/Forsaken-v3.txt"))()
+loadstring(game:HttpGet("https://github.com/kingniycba1000-cpu/_VUX.BAOW.AN_/raw/refs/heads/main/V%C5%A9%20bao%20an"))()
 ]]
                     queue_on_teleport(SpawnHubScript1)
                 end
