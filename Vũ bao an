@@ -3314,7 +3314,7 @@ task.spawn(function()
 end)
 
 Tabs.Event:AddToggle("AutoFarmSukkars", {
-    Title = "Auto Farm Sukkars",
+    Title = "Auto Farm even",
     Default = false,
     Callback = function(state)
         autoTeleport = state
@@ -3343,11 +3343,11 @@ local Levels = {
     {name = "Hợp Thể", time = 86400, hasStage = true},
     {name = "Đại Thừa", time = 97200, hasStage = true},
     {name = "Độ Kiếp", time = 108000, hasStage = true},
-    {name = "Thánh Cảnh", time = 118800, hasStage = true},
+    {name = "Thánh Cảnh", time = 10000, hasStage = true},
     {name = "Thánh Vương", time = 129600, hasStage = true},
-    {name = "Chí Tôn", time = 140400, hasStage = true},
-    {name = "Chuẩn Đế", time = 151200, hasStage = true},
-    {name = "Đại Đế", time = 162000, hasStage = true},
+    {name = "Chí Tôn", time = 10000000000000000, hasStage = true},
+    {name = "Chuẩn Đế", time = 1000000, hasStage = true},
+    {name = "Đại Đế", time = 1, hasStage = true},
 }
 
 local Stages = {
@@ -3388,7 +3388,7 @@ local function GetProgress(totalTime)
                 return current.name, (current.hasStage and "Cửu Giai" or nil), 1, 1
             end
 
-            local levelDuration = 10800 -- 3h
+            local levelDuration = 10800 -- 1
             local elapsedInLevel = totalTime - current.time
             local percent = math.clamp(elapsedInLevel / levelDuration, 0, 1)
 
@@ -3721,7 +3721,7 @@ do
     local SkinDropdown -- khai báo trước
 
     local killerDropdown = Tabs.Custom:AddDropdown("ChooseKillersDropdown", {
-        Title = "Choose Killers",
+        Title = "chọn Killers",
         Values = killerNames,
         Default = selectedKiller,
         Multi = false,
@@ -3987,7 +3987,7 @@ local ActiveNoStun = false
 local noStunLoop
 
 Tabs.Player:AddToggle("NoStunToggle", {
-    Title = "No Stun",
+    Title = "không bị Stun",
     Default = false,
 }):OnChanged(function(value)
     ActiveNoStun = value
@@ -4081,7 +4081,7 @@ end
 
 
 Tabs.Player:AddToggle("InfiniteZoom", {
-    Title = "Infinite Zoom",
+    Title = "Zoom vô hạn",
     Default = false,
     Callback = function(Value)
         local player = game.Players.LocalPlayer
@@ -4241,7 +4241,7 @@ do
     end
 
     Tabs.Player:AddToggle("FakeFixGen", {
-        Title = "Fake Fix Gen",
+        Title = "giả đang sửa máy",
         Default = false,
         Callback = function(state)
             animator = getAnimator()
@@ -4272,8 +4272,8 @@ end
 
 
 do
-Tabs.Player:AddToggle("FakeDieV2", {
-    Title = "Fake Die V2",
+Tabs.Player:AddToggle("FakeDieV1", {
+    Title = "giả chết V1",
     Default = false
 }):OnChanged(function(state)
     local Players = game:GetService("Players")
@@ -4345,7 +4345,7 @@ local ForsakenReachEnabled = false
 local NearestDist = 120
 
 Tabs.Player:AddToggle("ForsakenReachToggle", {
-    Title = "Hitbox Devil",
+    Title = "Hitbox ác quỷ",
     Default = false,
     Save = true
 }):OnChanged(function(Value)
@@ -4353,7 +4353,7 @@ Tabs.Player:AddToggle("ForsakenReachToggle", {
 end)
 
 Tabs.Player:AddSlider("ForsakenReachSlider", {
-    Title = "Distance",
+    Title = "tầm xa của hitbox",
     Default = 120,
     Min = 10,
     Max = 300,
@@ -4679,7 +4679,7 @@ Tabs.Player:AddSlider("PlayerSpeedSlider", {
 end)
 
 Tabs.Player:AddToggle("PlayerSpeedToggle", {
-    Title = "Walk Speed",
+    Title = "tốc độ đi bộ",
     Default = false,
 }):OnChanged(function(enabled)
     WalkSpeed.Active = enabled
@@ -4713,7 +4713,7 @@ local TeleportSpeed = {
 Tabs.Player:AddSection("↳ Teleport Speed")
 
 Tabs.Player:AddSlider("TeleportSpeedSlider", {
-    Title = "Set Speed",
+    Title = "trọn Speed",
     Min = 1,
     Max = TeleportSpeed.Max,
     Default = TeleportSpeed.Value,
@@ -4723,7 +4723,7 @@ Tabs.Player:AddSlider("TeleportSpeedSlider", {
 end)
 
 Tabs.Player:AddToggle("TeleportSpeedToggle", {
-    Title = "Teleport Speed",
+    Title = "tốc độ Teleport",
     Default = false,
 }):OnChanged(function(enabled)
     TeleportSpeed.Active = enabled
@@ -4842,7 +4842,7 @@ _G.ESPManager:RegisterType("Generator", Color3.fromRGB(255,255,255), function(ob
 end, false)
 
 Tabs.Visual:AddToggle("ESPGeneratorToggle", {
-    Title = "ESP Generator",
+    Title = "ESP máy phát điện",
     Default = false,
 }):OnChanged(function(state)
     _G.ESPManager:SetEnabled("Generator", state)
@@ -5222,7 +5222,7 @@ local LocalPlayer = Players.LocalPlayer
 local function ServerHop()
     local placeId = game.PlaceId
     local jobId = game.JobId
-    print("[ServerHop] Đang rời server hiện tại...")
+    print("[ServerHop] Đang cho mày cook khỏi sever hiện tại...")
 
     local success, err = pcall(function()
         TeleportService:Teleport(placeId, LocalPlayer)
@@ -5232,11 +5232,11 @@ local function ServerHop()
         if Fluent and Fluent.Notify then
             Fluent:Notify({
                 Title = "Rejoin Starting",
-                Content = "Bố mày tìm được rồi từ từ t chuyển vào cho",
+                Content = "Bố mày tìm được rồi từ từ tap chuyển vào cho",
                 Duration = 3
             })
         else
-            print("[ServerHop] Đang chuyển server...")
+            print("[thấy rồi!] Đang chuyển server...")
         end
     else
         warn("[ServerHop] Lỗi khi Teleport:", err)
@@ -5251,7 +5251,7 @@ local function ServerHop()
 end
 
 Tabs.Misc:AddButton({
-    Title = "Rejoin To Fix Lag",
+    Title = "tìm sever Fix Lag",
     Callback = function()
         if Fluent and Fluent.Notify then
             Fluent:Notify({
