@@ -1696,7 +1696,7 @@ do
 
     local enabled = false
     Tabs.Main:AddToggle("AutoBackstab", {
-        Title = "Auto Backstab V2",
+        Title = "Tự động cắn lén V1",
         Default = false
     }):OnChanged(function(state)
         enabled = state
@@ -1849,7 +1849,7 @@ do
 
         if char.Name ~= "TwoTime" then return end
 
-        if Mode == "Player Aimbot" then
+        if Mode == "chính mày Aimbot" then
             if isPlayingTargetAnimation(humanoid) then
                 local killers = getNearbyKillers(myHRP.Position)
                 if #killers > 0 then
@@ -2103,7 +2103,7 @@ end
     Tabs.Main:AddSection("↳ Veeronica")
 
 Tabs.Main:AddToggle("AutoTrick", {
-    Title = "Auto Trick V2",
+    Title = "tự động Trick v1",
     Default = false,
     Callback = function(Value)
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -2422,13 +2422,13 @@ do
     strictRangeOn = strictFlag.Value
     detectionRange = rangeFlag.Value
 
-    Tabs.Main:AddToggle("AutoBlockV2", {Title = "Auto Block V3", Default = toggleOn})
+    Tabs.Main:AddToggle("AutoBlockV2", {Title = "tự động đỡ V1", Default = toggleOn})
         :OnChanged(function(state)
             toggleOn = state
             toggleFlag.Value = state
         end)
 
-    Tabs.Main:AddToggle("StrictRangeCheck", {Title = "Auto Check V3", Default = strictRangeOn})
+    Tabs.Main:AddToggle("StrictRangeCheck", {Title = "tự check rage V1", Default = strictRangeOn})
         :OnChanged(function(state)
             strictRangeOn = state
             strictFlag.Value = state
@@ -2728,13 +2728,13 @@ do
         end
     end)
 
-    Tabs.Main:AddToggle("AutoPunch", { Title = "Auto Punch", Default = false })
+    Tabs.Main:AddToggle("AutoPunch", { Title = "tự động đấm", Default = false })
         :OnChanged(function(val) autoPunchOn = val end)
 
-    Tabs.Main:AddToggle("AimPunch", { Title = "Punch Aimbot", Default = false })
+    Tabs.Main:AddToggle("AimPunch", { Title = "ghim cú đấm", Default = false })
         :OnChanged(function(val) aimPunch = val end)
 
-    Tabs.Main:AddToggle("FlingPunch", { Title = "Fling Punch", Default = false })
+    Tabs.Main:AddToggle("FlingPunch", { Title = "không có tác dụng còn dễ ban", Default = false })
         :OnChanged(function(val) flingPunchOn = val end)
 
     Tabs.Main:AddSlider("Prediction", {
@@ -2742,8 +2742,8 @@ do
         Min = 0, Max = 10, Default = 4, Rounding = 1,
     }):OnChanged(function(val) predictionValue = val end)
 
-    Tabs.Main:AddSlider("FlingPower", {
-        Title = "Fling Power",
+    Tabs.Main:AddSlider("Fling Power", {
+        Title = "không có tác dụng mà còn dễ ban không nên xài",
         Min = 5000, Max = 500000, Default = 10000, Rounding = 0,
     }):OnChanged(function(val) flingPower = val end)
 
