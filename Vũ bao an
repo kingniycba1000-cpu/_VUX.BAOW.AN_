@@ -17,7 +17,7 @@ local Window = Fluent:CreateWindow({
     UserInfo = true,
     UserInfoTop = false,
     UserInfoTitle = game:GetService("Players").LocalPlayer.DisplayName,
-    UserInfoSubtitle = "I Love Hutao",
+    UserInfoSubtitle = "I Love Vu Bao An",
     UserInfoSubtitleColor = Color3.fromRGB(71, 123, 255)
 })
 
@@ -364,7 +364,7 @@ local Options = Fluent.Options
         Title = "Discord",
         Description = "Copy the link to join the discord!",
         Callback = function()
-            setclipboard("https://discord.gg/WEGT92yv")
+            setclipboard("sau này sẽ có")
             Fluent:Notify({
                 Title = "Notification",
                 Content = "Successfully copied to the clipboard",
@@ -380,7 +380,7 @@ local Options = Fluent.Options
         Title = "Youtube",
         Description = "Copy link to Subscribe to Youtube channel!",
         Callback = function()
-            setclipboard("https://www.youtube.com/@SLKgamingSSR")
+            setclipboard("comming soon")
             Fluent:Notify({
                 Title = "Notification",
                 Content = "Successfully copied to the clipboard!",
@@ -395,7 +395,7 @@ local Options = Fluent.Options
         Title = "Facebook",
         Description = "Copy link to join facebook group!",
         Callback = function()
-            setclipboard("https://www.facebook.com/groups/1180845463307087/?ref=share&mibextid=NSMWBT")
+            setclipboard("comming soon")
             Fluent:Notify({
                 Title = "Notification",
                 Content = "Successfully copied to the clipboard!",
