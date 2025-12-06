@@ -4,8 +4,8 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 -- Tạo cửa sổ Fluent chính
 local Window = Fluent:CreateWindow({
-    Title = "Vũ Bảo An Hub| Forsaken |",
-    SubTitle = "Version 1.0.1",
+    Title = "Vũ Bảo An Hub [Anti] | Forsaken |",
+    SubTitle = "Version 5.3.0",
     Search = true,
     Icon = "rbxassetid://121302760641013",
     TabWidth = 160,
@@ -17,7 +17,7 @@ local Window = Fluent:CreateWindow({
     UserInfo = true,
     UserInfoTop = false,
     UserInfoTitle = game:GetService("Players").LocalPlayer.DisplayName,
-    UserInfoSubtitle = "I Love Vu Bao An",
+    UserInfoSubtitle = "I Love Vũ Bảo An",
     UserInfoSubtitleColor = Color3.fromRGB(71, 123, 255)
 })
 
@@ -364,7 +364,7 @@ local Options = Fluent.Options
         Title = "Discord",
         Description = "Copy the link to join the discord!",
         Callback = function()
-            setclipboard("sau này sẽ có")
+            setclipboard("AntiHuTao")
             Fluent:Notify({
                 Title = "Notification",
                 Content = "Successfully copied to the clipboard",
@@ -380,7 +380,7 @@ local Options = Fluent.Options
         Title = "Youtube",
         Description = "Copy link to Subscribe to Youtube channel!",
         Callback = function()
-            setclipboard("comming soon")
+            setclipboard("Antihutao")
             Fluent:Notify({
                 Title = "Notification",
                 Content = "Successfully copied to the clipboard!",
@@ -395,7 +395,7 @@ local Options = Fluent.Options
         Title = "Facebook",
         Description = "Copy link to join facebook group!",
         Callback = function()
-            setclipboard("comming soon")
+            setclipboard("...")
             Fluent:Notify({
                 Title = "Notification",
                 Content = "Successfully copied to the clipboard!",
@@ -5180,8 +5180,8 @@ getgenv().SoundService = game:GetService("SoundService")
 getgenv().RunService = game:GetService("RunService")
 
 -- 📁 Ensure folders exist
-local folderPath = "HutaoHub/Assets"
-if not isfolder("HutaoHub") then makefolder("HutaoHub") end
+local folderPath = "VuBaoAnHub/Assets"
+if not isfolder("VuBaoAnHub") then makefolder("VuBaoAn") end
 if not isfolder(folderPath) then makefolder(folderPath) end
 
 -- 🎵 Track list (FULL)
@@ -8246,13 +8246,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/hdksakst-ship-it/Huta
             end)
         end)
         Fluent:Notify({
-            Title = "Hutao HUB",
+            Title = "Vũ Bảo An",
             Content = "Auto execute is enabled!",
             Duration = 5
         })
     else
         Fluent:Notify({
-            Title = "Hutao HUB",
+            Title = "Vũ Bảo An",
             Content = "Auto execute is disabled!",
             Duration = 5
         })
@@ -8272,8 +8272,8 @@ SaveManager:SetIgnoreIndexes({})
 -- use case for doing it this way:
 -- a script hub could have themes in a global folder
 -- and game configs in a separate folder per game
-InterfaceManager:SetFolder("Hutao HUB")
-SaveManager:SetFolder("Hutao HUB/Forsaken")
+InterfaceManager:SetFolder("Vũ Bảo An HUB")
+SaveManager:SetFolder("Vũ Bảo An/Forsaken")
 
 InterfaceManager:BuildInterfaceSection(Tabs.Settings)
 SaveManager:BuildConfigSection(Tabs.Settings)
@@ -8281,7 +8281,7 @@ SaveManager:BuildConfigSection(Tabs.Settings)
 -- Select First Tab By Default
 Window:SelectTab(1)
 
-Fluent:Notify({ Title = "Hutao HUB", Content = "forsaken script loaded successfully!", Duration = 5 })
+Fluent:Notify({ Title = "Vũ Bảo An", Content = "forsaken script loaded successfully!", Duration = 5 })
 SaveManager:LoadAutoloadConfig()
 
 
@@ -8291,14 +8291,14 @@ local CoreGui = game:GetService("CoreGui")
 local TweenService = game:GetService("TweenService")
 
 -- Xóa nếu có UI minimize cũ
-local ExistingUI = CoreGui:FindFirstChild("HutaoHubMinimizeUI")
+local ExistingUI = CoreGui:FindFirstChild("VuBaoAnHubMinimizeUI")
 if ExistingUI then
     ExistingUI:Destroy()
 end
 
 -- Create Floating UI
 local DragUI = Instance.new("ScreenGui")
-DragUI.Name = "HutaoHubMinimizeUI"
+DragUI.Name = "VuBaoAnHubMinimizeUI"
 DragUI.ResetOnSpawn = false
 DragUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 DragUI.Parent = CoreGui
@@ -8393,6 +8393,22 @@ local function OnDrag(input)
             startPos.X.Offset + (input.Position.X - dragStart.X),
             startPos.Y.Scale,
             startPos.Y.Offset + (input.Position.Y - dragStart.Y)
+        )
+    end
+end
+
+-- Dragging Support
+Button.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        StartDrag(input)
+    end
+end)
+
+Button.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        OnDrag(input)
+    end
+end)  osition.Y - dragStart.Y)
         )
     end
 end
